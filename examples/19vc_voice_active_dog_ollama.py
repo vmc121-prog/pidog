@@ -8,7 +8,7 @@ from voice_active_dog import VoiceActiveDog
 llm = LLM(
     ip="192.168.1.178",
     #ßmodel="llama3.2:3b"   # you can replace with any model
-    model = "qwen3:coder:30b"  # This was your original setting
+    model = "qwen3-coder:30b"  # This was your original setting
 )
 
 # Robot name
