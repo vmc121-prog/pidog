@@ -110,3 +110,4 @@ vad = VoiceActiveDog(
 
 if __name__ == '__main__':
     vad.run()
+    vad.
