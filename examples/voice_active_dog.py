@@ -1,3 +1,5 @@
+from email.mime import text
+
 from pidog.voice_assistant import VoiceAssistant
 
 from pidog.pidog import Pidog
@@ -131,7 +133,7 @@ class VoiceActiveDog(VoiceAssistant):
     def before_think(self, text):
         # This is called with the user's text just before sending to Ollama
         log.info("\n===== SENDING TO OLLAMA =====")
-        log.info("USER: {text}")
+        log.info("voice_active_dog.py USER data sent: "+text)
         log.info(f"=============================\n")
         self.dog.rgb_strip.set_mode('breath', 'cyan', 1)
         self.dog.rgb_strip.set_mode('breath', 'cyan', 1)
@@ -151,6 +153,9 @@ class VoiceActiveDog(VoiceAssistant):
         self.action_flow.set_status(ActionStatus.THINK)
 
     def parse_response(self, text):
+        log.info(f"\n===== OLLAMA RESPONSE =====")
+        log.info("parse_response: "+text)
+        log.info(f"===========================\n")
         result = text.strip().split('ACTIONS: ')
 
         response_text = result[0].strip()
@@ -163,7 +168,7 @@ class VoiceActiveDog(VoiceAssistant):
         else:
             actions = ['stop']
         self.action_flow.add_action(*actions)
-        print(f"voice_assistant:Parsed response text: {response_text}")
+        log.info(f"voice_assistant:Parsed response text: {response_text}")
 
         
         return response_text
