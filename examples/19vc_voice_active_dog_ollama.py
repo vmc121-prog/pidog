@@ -110,4 +110,4 @@ vad = VoiceActiveDog(
 
 if __name__ == '__main__':
     vad.run()
-    vad.
+    print("voice assistandt "+ vad.toString())

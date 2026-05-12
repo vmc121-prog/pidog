@@ -4,10 +4,23 @@ from pidog.pidog import Pidog
 from pidog.dual_touch import TouchStyle
 from pidog.action_flow import ActionFlow, ActionStatus, Posetures
 
+
 import time
 import threading
 import random
 import json
+import argparse
+import logging
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--debug", action="store_true")
+args = parser.parse_args()
+
+# ── Logging (must be set up before any module imports that use logging) ────────
+from modules.logging_config import setup_logging
+setup_logging(level=logging.DEBUG if args.debug else logging.INFO)
+log = logging.getLogger("Main")
+log.info("Main starting")
 
 # Robot name
 NAME = "Buddy"
@@ -116,6 +129,13 @@ class VoiceActiveDog(VoiceAssistant):
         self.dog.rgb_strip.set_mode('breath', 'cyan', 1)
 
     def before_think(self, text):
+        # This is called with the user's text just before sending to Ollama
+        log.info("\n===== SENDING TO OLLAMA =====")
+        log.info("USER: {text}")
+        log.info(f"=============================\n")
+        self.dog.rgb_strip.set_mode('breath', 'cyan', 1)
+        self.dog.rgb_strip.set_mode('breath', 'cyan', 1)
+        self.dog.rgb_strip.set_mode('listen', 'yellow', 1) 
         self.dog.rgb_strip.set_mode('listen', 'yellow', 1)
 
     def on_start(self):
