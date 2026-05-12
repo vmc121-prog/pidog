@@ -143,6 +143,8 @@ class VoiceActiveDog(VoiceAssistant):
         else:
             actions = ['stop']
         self.action_flow.add_action(*actions)
+        print(f"voice_assistant:Parsed response text: {response_text}")
+
         
         return response_text
 
