@@ -154,9 +154,12 @@ class VoiceModule(BaseModule):
             cmd = self._command_queue.get()
             if cmd in COMMANDS:
                 action, phrase, pri = COMMANDS[cmd]
+                log.info(f"[Voice] Acting on command:action, phrase, pri {  cmd, action, phrase, pri}")
                 self.speech.say(phrase, priority=pri)
                 if str(action) == "forward":
-                    self.dog.do_action("forward", speed=70)
+                    log.info(f"[Voice] Executing forward action")
+                    log.debug(f"[Voice] Dog object: {self.dog}")    
+                    
                     self.dog.rgb_strip.set_mode('breath', 'white', bps=0.5)
                     self.dog.do_action('forward', step_count=2, speed=98)
                     self.dog.do_action('shake_head', step_count=1, speed=80)

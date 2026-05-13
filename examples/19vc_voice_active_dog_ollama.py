@@ -1,7 +1,7 @@
 from pidog.llm import Ollama as LLM
 
 from pidog.dual_touch import TouchStyle
-from voice_active_dog import VoiceActiveDog
+from voice_active_dog_vc import VoiceActiveDog
 
 # If Ollama runs on the same Raspberry Pi, use "localhost".
 # If it runs on another computer in your LAN, replace with that computer's IP address.
@@ -110,4 +110,4 @@ vad = VoiceActiveDog(
 
 if __name__ == '__main__':
     vad.run()
-    print("voice assistandt "+ vad.toString())
+   
